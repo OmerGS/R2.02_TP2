@@ -27,6 +27,8 @@ public class CharacterSheetModel {
         this.CharacterGender = new String();
         this.CharacterRace = new String();
         this.CharacterClass = new String();
+        
+        
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

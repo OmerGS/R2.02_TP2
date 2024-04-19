@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CharacterSheetStats extends JPanel {
@@ -47,13 +46,18 @@ public class CharacterSheetStats extends JPanel {
     private JSpinner charisme;
     private JLabel charismeLabel;
 
+    private CharacterSheetListener sheet;
+
+    private int usedPoints = 0;
 
 
-    public CharacterSheetStats() {
+    public CharacterSheetStats(CharacterSheetListener sheet) {
+        this.sheet = sheet;
         initComponents();
     }
 
     private void initComponents() {
+        spinnerList = new ArrayList<JSpinner>();
         setLayout(new GridBagLayout()); // Using GridBagLayout for centering
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -118,9 +122,6 @@ public class CharacterSheetStats extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(affichage, gbc);
 
-
-
-
         
         //Caracteristique
 
@@ -152,8 +153,20 @@ public class CharacterSheetStats extends JPanel {
 
         this.charisme = new JSpinner(charModel);
         this.charismeLabel = new JLabel(" char");
+        
+        this.force.addChangeListener(this.sheet);
+        this.dexterite.addChangeListener(this.sheet);
+        this.constitution.addChangeListener(this.sheet);
+        this.intelligence.addChangeListener(this.sheet);
+        this.sagesse.addChangeListener(this.sheet);
+        this.charisme.addChangeListener(this.sheet);
 
-
+        this.spinnerList.add(force);
+        this.spinnerList.add(dexterite);
+        this.spinnerList.add(constitution);
+        this.spinnerList.add(intelligence);
+        this.spinnerList.add(sagesse);
+        this.spinnerList.add(charisme);
 
         this.affichageCaracteristique.add(forceLabel);
         this.affichageCaracteristique.add(force);
@@ -179,17 +192,53 @@ public class CharacterSheetStats extends JPanel {
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(affichageCaracteristique, gbc);
-
     }
 
-
-    public void updatePointsLabel() {
-        int usedPoints = 0;
-        for (JSpinner spinner : spinnerList) {
-            usedPoints += (int) spinner.getValue() - 8; // Calculer les points utilisés pour chaque caractéristique
-        }
-        this.pointTotal = 27 - usedPoints; // Calculer le total des points restants
-        this.textPoint.setText("Points restants: " + pointTotal); // Mettre à jour le label des points restants
+    public ArrayList getSpinnerList(){
+        return(this.spinnerList);
     }
 
+    public JSpinner getJSpinnerForce(){
+        return this.force;
+    }
+
+    public JSpinner getJSpinnerDexterite(){
+        return(this.dexterite);
+    }
+
+    public JSpinner getJSpinnerIntelligence(){
+        return(this.intelligence);
+    }
+
+    public JSpinner getJSpinnerSagesse(){
+        return(this.sagesse);
+    }
+
+    public JSpinner getJSpinnerConstitution(){
+        return(this.constitution);
+    }
+
+    public JSpinner getJSpinnerCharisme(){
+        return(this.charisme);
+    }
+
+    public int getPointTotal() {
+        return this.pointTotal;
+    }
+
+    public int getUsedPoint() {
+        return this.usedPoints;
+    }
+
+    public void setPointTotal(int point){
+        this.pointTotal = point;
+    }
+
+    public void setUsedPoint(int point){
+        this.usedPoints = point;
+    }   
+
+    public void updateStatus(int point) {
+        this.textPoint.setText("Point restant : " + point);
+    }
 }

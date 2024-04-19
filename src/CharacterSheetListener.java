@@ -1,7 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -24,7 +26,20 @@ public class CharacterSheetListener implements ActionListener, ChangeListener {
         }
     }
 
-    public void stateChanged(ChangeEvent paramChangeEvent) {
-        
+    public void stateChanged(ChangeEvent e) {
+        updateCharacterSheetStats();
     }
+
+    private void updateCharacterSheetStats(){
+        ArrayList<JSpinner> spinnerList = characterSheet.getCharacterSheetStats().getSpinnerList();
+        String sommeTotal = "";
+        
+        for (JSpinner spinner : spinnerList) {
+            sommeTotal += spinner.getValue();
+            sommeTotal += " ";
+        }
+
+        System.out.println(sommeTotal);
+    }
+        
 }

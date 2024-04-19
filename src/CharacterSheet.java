@@ -18,7 +18,7 @@ public class CharacterSheet extends JFrame {
         characterSheetListener = new CharacterSheetListener(this); // Initialize the listener
         
         characterSheetToolBar = new CharacterSheetToolBar(characterSheetListener); // Pass the listener to the toolbar
-        characterSheetStats = new CharacterSheetStats();
+        characterSheetStats = new CharacterSheetStats(this.characterSheetListener);
         characterSheetStateBar = new CharacterSheetStateBar("0.0.1");
 
         panel = new JPanel();
