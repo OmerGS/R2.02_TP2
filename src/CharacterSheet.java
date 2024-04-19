@@ -8,17 +8,17 @@ public class CharacterSheet extends JFrame {
     private CharacterSheetStateBar characterSheetStateBar;
     private CharacterSheetStats characterSheetStats;
     private CharacterSheetToolBar characterSheetToolBar;
-    private CharacterSheetListener characterSheetListener; // Add a listener
+    private CharacterSheetListener characterSheetListener;
 
     public CharacterSheet() {
         this.initComponents();
     }
 
     private void initComponents() {
-        characterSheetListener = new CharacterSheetListener(this); // Initialize the listener
-        
-        characterSheetToolBar = new CharacterSheetToolBar(characterSheetListener); // Pass the listener to the toolbar
-        characterSheetStats = new CharacterSheetStats(this.characterSheetListener);
+        characterSheetListener = new CharacterSheetListener(this, new CharacterSheetModel());
+
+        characterSheetToolBar = new CharacterSheetToolBar(characterSheetListener);
+        characterSheetStats = new CharacterSheetStats(characterSheetListener);
         characterSheetStateBar = new CharacterSheetStateBar("0.0.1");
 
         panel = new JPanel();

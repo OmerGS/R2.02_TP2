@@ -239,6 +239,7 @@ public class CharacterSheetStats extends JPanel {
     }   
 
     public void updateStatus(int point) {
+        this.pointTotal = point;
         this.textPoint.setText("Point restant : " + point);
     }
 }
