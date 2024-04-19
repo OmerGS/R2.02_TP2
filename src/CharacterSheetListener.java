@@ -19,7 +19,7 @@ public class CharacterSheetListener implements ActionListener, ChangeListener {
             JButton sourceButton = (JButton) e.getSource();
             String buttonText = sourceButton.getText();
             
-            // Check which button was clicked and perform corresponding actions
+
             characterSheet.getCharacterSheetStateBar().updateStatus(buttonText);
         }
     }

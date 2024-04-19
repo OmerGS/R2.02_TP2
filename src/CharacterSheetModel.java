@@ -23,7 +23,10 @@ public class CharacterSheetModel {
     }
 
     private void initValues() {
-        // TODO
+        this.CharacterName = new String();
+        this.CharacterGender = new String();
+        this.CharacterRace = new String();
+        this.CharacterClass = new String();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -33,5 +36,4 @@ public class CharacterSheetModel {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         changeSupport.removePropertyChangeListener(listener);
     }
-
 }

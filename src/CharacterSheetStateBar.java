@@ -13,7 +13,7 @@ public class CharacterSheetStateBar extends JPanel {
         setLayout(new BorderLayout());
 
         // Create status label and add it to the left side
-        statusLabel = new JLabel("<STATUT>");
+        statusLabel = new JLabel();
         add(statusLabel, BorderLayout.WEST);
 
         // Create version label and add it to the right side
