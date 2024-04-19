@@ -194,7 +194,7 @@ public class CharacterSheetStats extends JPanel {
         add(affichageCaracteristique, gbc);
     }
 
-    public ArrayList getSpinnerList(){
+    public ArrayList<JSpinner> getSpinnerList(){
         return(this.spinnerList);
     }
 
